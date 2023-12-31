@@ -1,7 +1,10 @@
 package com.example.schedule.service;
 
+import com.example.schedule.common.R;
 import com.example.schedule.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -9,8 +12,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author austin
- * @since 2023-12-30
+ * @since 2023-12-31
  */
 public interface UserService extends IService<User> {
-
+    User wxLogin(Map<String,Object> map);
 }

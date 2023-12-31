@@ -1,7 +1,14 @@
 package com.example.schedule.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.schedule.common.R;
+import com.example.schedule.entity.User;
+import com.example.schedule.service.UserService;
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -9,10 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author austin
- * @since 2023-12-30
+ * @since 2023-12-31
  */
+@Slf4j
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户相关接口")
 public class UserController {
-
+    @Autowired
+   private UserService userService;
+   @PostMapping("/login")
+   public R<User> login(@RequestBody Map<String,Object> map){
+        User user = userService.wxLogin(map);
+       return R.success(user);
+   }
 }

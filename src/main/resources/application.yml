@@ -29,3 +29,7 @@ mybatis-plus:
       id-type: ASSIGN_ID
 reggie:
   path: /src/main/resources/uploads/
+weixin:
+  jscode2sessionUrl: https://api.weixin.qq.com/sns/jscode2session
+  appid: wxae2ca77ab20990ea  #修改自己的微信小程序 appId
+  secret: d3396d7c27d55d70a19790d2cc4b85ac   #修改自己的微信小程序 appSecret

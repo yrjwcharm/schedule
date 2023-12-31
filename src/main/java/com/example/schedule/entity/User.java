@@ -1,5 +1,6 @@
 package com.example.schedule.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -16,7 +17,7 @@ import lombok.Setter;
  * </p>
  *
  * @author austin
- * @since 2023-12-30
+ * @since 2023-12-31
  */
 @Getter
 @Setter
@@ -29,9 +30,18 @@ public class User implements Serializable {
     @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
-    @TableField("user_name")
-    private String userName;
+    @TableField("nick_name")
+    private String nickName;
+
+    @TableField("avatar_url")
+    private String avatarUrl;
 
     @TableField("open_id")
-    private Long openId;
+    private String openId;
+
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private Long createTime;
+
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    private Long updateTime;
 }
