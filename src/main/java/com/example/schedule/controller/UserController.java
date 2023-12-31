@@ -28,6 +28,7 @@ public class UserController {
    @PostMapping("/login")
    public R<User> login(@RequestBody Map<String,Object> map){
         User user = userService.wxLogin(map);
+        userService.save(user);
        return R.success(user);
    }
 }
