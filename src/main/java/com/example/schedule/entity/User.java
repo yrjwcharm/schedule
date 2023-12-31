@@ -32,8 +32,14 @@ public class User implements Serializable {
     @TableId(value = "user_id", type = IdType.ASSIGN_ID)
     private Long userId;
 
+    @TableField("user_name")
+    private String userName;
+
     @TableField("nick_name")
     private String nickName;
+
+    @TableField("phone")
+    private String phone;
 
     @TableField("avatar_url")
     private String avatarUrl;

@@ -43,9 +43,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         LambdaQueryWrapper<User> lambdaQueryWrapper =new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(User::getOpenId,openid);
         User user = getOne(lambdaQueryWrapper);
+        //判断是否是新用户，如果是新用户才往数据库里添加数据
         if(user==null){
             user = JSON.parseObject(JSON.toJSONString(map), User.class);
             user.setOpenId(openid);
+            save(user);
         }
         return user;
     }
