@@ -44,6 +44,9 @@ public class Schedule implements Serializable {
     @TableField("user_id")
     private Long userId;
 
+    @TableField("status")
+    private Integer status;
+
     @TableField("remind_time")
     private LocalDateTime remindTime;
 
