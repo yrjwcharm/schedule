@@ -1,5 +1,6 @@
 package com.example.schedule.utils;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -127,7 +128,7 @@ public class HttpClientUtil {
      * @return
      * @throws IOException
      */
-    public static String doPost4Json(String url, Map<String, String> paramMap) throws IOException {
+    public static String doPost4Json(String url, Map<String, Object> paramMap) throws IOException {
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
@@ -139,11 +140,9 @@ public class HttpClientUtil {
 
             if (paramMap != null) {
                 //构造json格式数据
-                JSONObject jsonObject = new JSONObject();
-                for (Map.Entry<String, String> param : paramMap.entrySet()) {
-                    jsonObject.put(param.getKey(),param.getValue());
-                }
-                StringEntity entity = new StringEntity(jsonObject.toString(),"utf-8");
+                String jsonStr = JSON.toJSONString(paramMap);
+                StringEntity entity = new StringEntity(jsonStr,"utf-8");
+
                 //设置请求编码
                 entity.setContentEncoding("utf-8");
                 //设置数据类型

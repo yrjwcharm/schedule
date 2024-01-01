@@ -32,11 +32,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         log.info("开始静态资源映射....");
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-
-
-        registry.addResourceHandler("/uploads/**").addResourceLocations("classpath:/uploads/");
-//        registry.addResourceHandler("/front/**").addResourceLocations("classpath:/front/");
-
+        //添加图片资源 解决只有tomcat重启才能访问
+        registry.addResourceHandler("/uploads/**").
+                addResourceLocations("file:"+System.getProperty("user.dir")+"/src/main/resources/uploads/");
+        //addResourceLocations("file:d:/MySystem/src/main/resources/static/uploadFile/");
     }
 
     /**

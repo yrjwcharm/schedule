@@ -39,6 +39,7 @@ public class CommonController {
         String newFileName=  UUID.randomUUID()+suffix;
         String filePath = req.getScheme() + "://" + req.getServerName() + ":"
                 + req.getServerPort() + "/uploads/"+newFileName;
+
         file.transferTo(new File(UPLOAD_DIRECTORY+basePath+newFileName));
         return R.success(filePath);
     }
