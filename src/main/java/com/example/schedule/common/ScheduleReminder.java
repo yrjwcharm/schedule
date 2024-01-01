@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -75,7 +73,7 @@ public class ScheduleReminder {
         Map<String, Object> thing5Map = new HashMap<>();
         thing5Map.put("value",schedule.getScheduleName());
         Map<String, Object> thing2Map = new HashMap<>();
-        thing2Map.put("value","您的《"+schedule.getScheduleName()+"》日程计划快要开始了，请提前做好准备!!!");
+        thing2Map.put("value","您的日程计划将于"+schedule.getCreateTime()+"开始，请提前做好准备!!!");
         Map<String, Object> date4Map = new HashMap<>();
         date4Map.put("value",schedule.getCreateTime());
 //        date4Map.put("value",LocalDateTime.now());
