@@ -34,7 +34,7 @@ public class MessageController {
     public R<String> send(@RequestBody User user) throws IOException {
         Map<String,Object> body=new HashMap<>();
         body.put("touser",user.getOpenId());
-        body.put("template_id","Cf7lRaY7cb8U8Eq8phyry2vWCwgJxi5llrobKDpzqgc");
+        body.put("template_id","Cf7lRaY7cb8U8Eq8phyry2Eu5RXXL5R_NB-AFCnIbGY");
         Map<String,Object> map=new HashMap<>();
         Map<String, Object> thing5Map = new HashMap<>();
         thing5Map.put("value","垃圾");
@@ -42,12 +42,13 @@ public class MessageController {
         thing2Map.put("value","得到的");
         Map<String, Object> date4Map = new HashMap<>();
         date4Map.put("value","2023-01-01");
+//        date4Map.put("value",LocalDateTime.now());
         map.put("thing5",thing5Map);
         map.put("thing2",thing2Map);
-        map.put("date4",date4Map);
+        map.put("time3",date4Map);
         body.put("data",map);
         body.put("miniprogram_state","developer");
-        body.put("page","page/index/index");
+        body.put("page","pages/index/index");
         //发送
         String accessToken= getAccessToken();
         String s = HttpClientUtil.doPost4Json("https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=" + accessToken, body);
