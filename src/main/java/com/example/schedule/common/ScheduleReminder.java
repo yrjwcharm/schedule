@@ -40,11 +40,9 @@ public class ScheduleReminder {
         for (Schedule schedule : scheduleList) {
                 if(LocalDateTime.now().compareTo(schedule.getRemindTime())>=0) {
                     Long userId = schedule.getUserId();
-                    LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
-                    userLambdaQueryWrapper.eq(User::getUserId, userId);
-                    User user = userService.getOne(userLambdaQueryWrapper);
+                    User user = userService.getById(userId);
                     try {
-                        String s = sendMsg(user);
+                        String s = sendMsg(user,schedule);
                         JSONObject jsonObject =JSON.parseObject(s);
                         if(jsonObject.getInteger("errcode")==0){
                             schedule.setStatus(1);
@@ -69,17 +67,17 @@ public class ScheduleReminder {
         JSONObject jsonObject = JSON.parseObject(result);
         return jsonObject.getString("access_token");
     }
-    public String sendMsg(User user) throws IOException {
+    public String sendMsg(User user,Schedule schedule) throws IOException {
         Map<String,Object> body=new HashMap<>();
         body.put("touser",user.getOpenId());
         body.put("template_id","Cf7lRaY7cb8U8Eq8phyry2Eu5RXXL5R_NB-AFCnIbGY");
         Map<String,Object> map=new HashMap<>();
         Map<String, Object> thing5Map = new HashMap<>();
-        thing5Map.put("value","垃圾");
+        thing5Map.put("value",schedule.getScheduleName());
         Map<String, Object> thing2Map = new HashMap<>();
-        thing2Map.put("value","得到的");
+        thing2Map.put("value","您的《"+schedule.getScheduleName()+"》日程计划快要开始了，请提前做好准备!!!");
         Map<String, Object> date4Map = new HashMap<>();
-        date4Map.put("value","2023-01-01");
+        date4Map.put("value",schedule.getCreateTime());
 //        date4Map.put("value",LocalDateTime.now());
         map.put("thing5",thing5Map);
         map.put("thing2",thing2Map);
