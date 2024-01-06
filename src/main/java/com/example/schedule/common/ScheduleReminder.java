@@ -38,13 +38,14 @@ public class ScheduleReminder {
         List<Schedule> scheduleList = scheduleService.list(lambdaQueryWrapper);
         // 遍历需要提醒的日程
         for (Schedule schedule : scheduleList) {
-                if(LocalDateTime.now().compareTo(schedule.getRemindTime())>=0) {
+            if(schedule.getRemindTime()!=null) {
+                if (LocalDateTime.now().compareTo(schedule.getRemindTime()) >= 0) {
                     Long userId = schedule.getUserId();
                     User user = userService.getById(userId);
                     try {
-                        String s = sendMsg(user,schedule);
-                        JSONObject jsonObject =JSON.parseObject(s);
-                        if(jsonObject.getInteger("errcode")==0){
+                        String s = sendMsg(user, schedule);
+                        JSONObject jsonObject = JSON.parseObject(s);
+                        if (jsonObject.getInteger("errcode") == 0) {
                             schedule.setStatus(1);
                             scheduleService.updateById(schedule);
                             break;
@@ -55,6 +56,7 @@ public class ScheduleReminder {
                         throw new CustomException(e.getMessage());
                     }
                 }
+            }
         }
     }
     @Autowired
