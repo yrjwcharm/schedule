@@ -30,7 +30,7 @@ public class ScheduleReminder {
     @Autowired
     private UserService userService;
     @Transactional
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 60000)
     public void checkReminder() {
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Schedule::getStatus,0);

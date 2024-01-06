@@ -51,6 +51,12 @@ public class Schedule implements Serializable {
     @TableField("status")
     private Integer status;
 
+    @TableField("schedule_arrange")
+    private String scheduleArrange;
+
+    @TableField("photos")
+    private String photos;
+
     @TableField("remind_time")
     private LocalDateTime remindTime;
 
