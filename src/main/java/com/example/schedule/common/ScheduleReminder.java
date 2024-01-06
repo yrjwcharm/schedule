@@ -34,6 +34,7 @@ public class ScheduleReminder {
     public void checkReminder() {
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Schedule::getStatus,0);
+        lambdaQueryWrapper.eq(Schedule::getOpenRemind,1);
         List<Schedule> scheduleList = scheduleService.list(lambdaQueryWrapper);
         // 遍历需要提醒的日程
         for (Schedule schedule : scheduleList) {
