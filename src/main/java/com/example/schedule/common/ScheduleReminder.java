@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class ScheduleReminder {
     @Autowired
     private UserService userService;
     @Transactional
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 1000)
     public void checkReminder() {
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Schedule::getStatus,0);
@@ -45,6 +46,7 @@ public class ScheduleReminder {
                         if(jsonObject.getInteger("errcode")==0){
                             schedule.setStatus(1);
                             scheduleService.updateById(schedule);
+                            break;
                         }
                         // 处理发送结果，记录日志或处理失败情况
                         // ...
@@ -68,15 +70,14 @@ public class ScheduleReminder {
     public String sendMsg(User user,Schedule schedule) throws IOException {
         Map<String,Object> body=new HashMap<>();
         body.put("touser",user.getOpenId());
-        body.put("template_id","Cf7lRaY7cb8U8Eq8phyry2Eu5RXXL5R_NB-AFCnIbGY");
+        body.put("template_id","Cf7lRaY7cb8U8Eq8phyryyVf3SzDDi1zpyJtaljoqjk");
         Map<String,Object> map=new HashMap<>();
         Map<String, Object> thing5Map = new HashMap<>();
         thing5Map.put("value",schedule.getScheduleName());
         Map<String, Object> thing2Map = new HashMap<>();
-        thing2Map.put("value","您的日程计划将于"+schedule.getCreateTime()+"开始，请提前做好准备!!!");
+        thing2Map.put("value","您的日程计划提醒通知到了，请提前做好准备");
         Map<String, Object> date4Map = new HashMap<>();
-        date4Map.put("value",schedule.getCreateTime());
-//        date4Map.put("value",LocalDateTime.now());
+        date4Map.put("value",schedule.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         map.put("thing5",thing5Map);
         map.put("thing2",thing2Map);
         map.put("time3",date4Map);

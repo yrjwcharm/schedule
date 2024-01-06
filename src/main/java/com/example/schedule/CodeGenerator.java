@@ -23,11 +23,11 @@ public class CodeGenerator {
         // 数据源配置
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/my_schedule", "root", "12345678")
                 .globalConfig(builder -> {
-                    builder.author("austin")        // 设置作者
+                    builder.author("yanruifeng")        // 设置作者
                             .enableSwagger()        // 开启 swagger 模式 默认值:false
                             .disableOpenDir()       // 禁止打开输出目录 默认值:true
                             .commentDate("yyyy-MM-dd") // 注释日期
-                            .dateType(DateType.ONLY_DATE)   //定义生成的实体类中日期类型 DateType.ONLY_DATE 默认值: DateType.TIME_PACK
+                            .dateType(DateType.TIME_PACK)   //定义生成的实体类中日期类型 DateType.ONLY_DATE 默认值: DateType.TIME_PACK
                             .outputDir(System.getProperty("user.dir") + "/src/main/java"); // 指定输出目录
                 })
 

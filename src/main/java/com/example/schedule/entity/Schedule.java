@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import io.swagger.annotations.ApiModel;
@@ -35,14 +36,17 @@ public class Schedule implements Serializable {
     @TableField("schedule_name")
     private String scheduleName;
 
-    @TableField("start_time")
-    private LocalDateTime startTime;
+    @TableField("start_date")
+    private LocalDate startDate;
 
-    @TableField("end_time")
-    private LocalDateTime endTime;
+    @TableField("end_date")
+    private LocalDate endDate;
 
     @TableField("user_id")
     private Long userId;
+
+    @TableField("open_remind")
+    private Integer openRemind;
 
     @TableField("status")
     private Integer status;
