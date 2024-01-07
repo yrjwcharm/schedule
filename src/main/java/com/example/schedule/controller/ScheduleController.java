@@ -79,22 +79,24 @@ public class ScheduleController {
             if (user != null) {
                 scheduleDto.setNickName(user.getNickName());
                 scheduleDto.setAvatarUrl(user.getAvatarUrl());
-                log.info("333:{}",scheduleDto.getScheduleArrange());
+                log.info("333:{}", scheduleDto.getScheduleArrange());
                 scheduleDto.setCategoryName(scheduleType.getTypeName());
-                JSONArray jsonArray = JSON.parseArray(scheduleDto.getScheduleArrange());
+                if (scheduleDto.getScheduleArrange() != null) {
+                    JSONArray jsonArray = JSON.parseArray(scheduleDto.getScheduleArrange());
 //              // 处理 JSONArray 对象
-                List<ScheduleArrange> arrayList =new ArrayList<>();
-                for (Object obj : jsonArray) {
-                    JSONObject jsonObject = (JSONObject) obj; // 转换为 JSONObject
-                    // 进行你的处理，比如获取属性值
-                    String date = jsonObject.getString("date");
-                    String content = jsonObject.getString("content");
-                    ScheduleArrange scheduleArrange =new ScheduleArrange();
-                    scheduleArrange.setContent(content);
-                    scheduleArrange.setDate(date);
-                    arrayList.add(scheduleArrange);
+                    List<ScheduleArrange> arrayList = new ArrayList<>();
+                    for (Object obj : jsonArray) {
+                        JSONObject jsonObject = (JSONObject) obj; // 转换为 JSONObject
+                        // 进行你的处理，比如获取属性值
+                        String date = jsonObject.getString("date");
+                        String content = jsonObject.getString("content");
+                        ScheduleArrange scheduleArrange = new ScheduleArrange();
+                        scheduleArrange.setContent(content);
+                        scheduleArrange.setDate(date);
+                        arrayList.add(scheduleArrange);
+                    }
+                    scheduleDto.setScheduleArrangeList(arrayList);
                 }
-                scheduleDto.setScheduleArrangeList(arrayList);
             }
             return scheduleDto;
         }).collect(Collectors.toList());
