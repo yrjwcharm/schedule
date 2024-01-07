@@ -8,9 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -59,6 +57,9 @@ public class Schedule implements Serializable {
 
     @TableField("photos")
     private String photos;
+
+    @TableField("view_count")
+    private Integer viewCount;
 
     @TableField("remind_time")
     private LocalDateTime remindTime;

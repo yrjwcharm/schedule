@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -28,8 +28,9 @@ public class UserController {
     @Autowired
    private UserService userService;
    @PostMapping("/login")
-   public R<User> login(@RequestBody Map<String,Object> map) {
+   public R<User> login(@RequestBody Map<String,Object> map, HttpSession httpSession) {
        User user = userService.wxLogin(map);
+       httpSession.setAttribute("user",user.getUserId());
        return R.success(user);
    }
    @PutMapping("/update")
