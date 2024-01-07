@@ -1,20 +1,26 @@
 package com.example.schedule.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.schedule.common.R;
 import com.example.schedule.dto.ScheduleDto;
 import com.example.schedule.entity.Schedule;
+import com.example.schedule.entity.ScheduleArrange;
 import com.example.schedule.entity.ScheduleType;
 import com.example.schedule.entity.User;
 import com.example.schedule.service.ScheduleService;
 import com.example.schedule.service.ScheduleTypeService;
 import com.example.schedule.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +32,7 @@ import java.util.stream.Collectors;
  * @author austin
  * @since 2024-01-01
  */
+@Slf4j
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
@@ -72,7 +79,22 @@ public class ScheduleController {
             if (user != null) {
                 scheduleDto.setNickName(user.getNickName());
                 scheduleDto.setAvatarUrl(user.getAvatarUrl());
+                log.info("333:{}",scheduleDto.getScheduleArrange());
                 scheduleDto.setCategoryName(scheduleType.getTypeName());
+                JSONArray jsonArray = JSON.parseArray(scheduleDto.getScheduleArrange());
+//              // 处理 JSONArray 对象
+                List<ScheduleArrange> arrayList =new ArrayList<>();
+                for (Object obj : jsonArray) {
+                    JSONObject jsonObject = (JSONObject) obj; // 转换为 JSONObject
+                    // 进行你的处理，比如获取属性值
+                    String date = jsonObject.getString("date");
+                    String content = jsonObject.getString("content");
+                    ScheduleArrange scheduleArrange =new ScheduleArrange();
+                    scheduleArrange.setContent(content);
+                    scheduleArrange.setDate(date);
+                    arrayList.add(scheduleArrange);
+                }
+                scheduleDto.setScheduleArrangeList(arrayList);
             }
             return scheduleDto;
         }).collect(Collectors.toList());
