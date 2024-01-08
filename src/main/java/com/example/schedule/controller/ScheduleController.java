@@ -28,6 +28,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * <p>
@@ -52,6 +53,40 @@ public class ScheduleController {
     public R<String> add(@RequestBody  Schedule schedule){
         scheduleService.save(schedule);
         return R.success("日程创建成功！！！");
+    }
+    @DeleteMapping("/{id}")
+    public R<String> delete (@PathVariable Long id){
+        scheduleService.removeById(id);
+        return R.success("日程计划删除成功！！！");
+    }
+    @GetMapping("/list")
+    public R<List<ScheduleDto>> list(Long userId ,int status){
+        LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Schedule::getUserId,userId);
+        if(status!=0) {
+            lambdaQueryWrapper.eq(Schedule::getStatus, status);
+            lambdaQueryWrapper.eq(Schedule::getOpenRemind, 1);
+        }
+        List<ScheduleDto> list = scheduleService.list(lambdaQueryWrapper).stream().map(item -> {
+            ScheduleDto scheduleDto=new ScheduleDto();
+            BeanUtils.copyProperties(item,scheduleDto);
+            User user = userService.getById(item.getUserId());
+            ScheduleType scheduleType =scheduleTypeService.getById(item.getTypeId());
+            if (user != null) {
+                scheduleDto.setNickName(user.getNickName());
+                scheduleDto.setAvatarUrl(user.getAvatarUrl());
+                log.info("333:{}", scheduleDto.getScheduleArrange());
+                scheduleDto.setCategoryName(scheduleType.getTypeName());
+//                普通方式
+                if (scheduleDto.getScheduleArrange() != null) {
+                    //fastJson
+                    List<ScheduleArrange> arrayList = JSON.parseObject(scheduleDto.getScheduleArrange(), new TypeReference<List<ScheduleArrange>>() {});
+                    scheduleDto.setScheduleArrangeList(arrayList);
+                }
+            }
+            return scheduleDto;
+        }).collect(Collectors.toList());
+        return R.success(list);
     }
     @GetMapping("/page")
     public R<Page<ScheduleDto>> queryCategory(int page, int pageSize, String keywords, Long typeId, Integer sortId){

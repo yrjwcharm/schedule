@@ -33,7 +33,9 @@ public class ScheduleReminder {
     @Scheduled(fixedDelay = 60000)
     public void checkReminder() {
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(Schedule::getStatus,0);
+        //1.待提醒 2.已提醒
+        lambdaQueryWrapper.eq(Schedule::getStatus,1);
+        //1.开启提醒 0关闭提醒
         lambdaQueryWrapper.eq(Schedule::getOpenRemind,1);
         List<Schedule> scheduleList = scheduleService.list(lambdaQueryWrapper);
         // 遍历需要提醒的日程
@@ -46,7 +48,7 @@ public class ScheduleReminder {
                         String s = sendMsg(user, schedule);
                         JSONObject jsonObject = JSON.parseObject(s);
                         if (jsonObject.getInteger("errcode") == 0) {
-                            schedule.setStatus(1);
+                            schedule.setStatus(2);
                             scheduleService.updateById(schedule);
                             break;
                         }
