@@ -33,7 +33,7 @@ public class ScheduleReminder {
     @Scheduled(fixedDelay = 60000)
     public void checkReminder() {
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
-        //1.待提醒 2.已提醒
+        //0.不提醒 1.待提醒 2.已提醒
         lambdaQueryWrapper.eq(Schedule::getStatus,1);
         //1.开启提醒 0关闭提醒
         lambdaQueryWrapper.eq(Schedule::getOpenRemind,1);

@@ -63,10 +63,11 @@ public class ScheduleController {
     public R<List<ScheduleDto>> list(Long userId ,int status){
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Schedule::getUserId,userId);
-        if(status!=0) {
+        if(status!=-1) {
             lambdaQueryWrapper.eq(Schedule::getStatus, status);
             lambdaQueryWrapper.eq(Schedule::getOpenRemind, 1);
         }
+        lambdaQueryWrapper.orderByDesc(Schedule::getUpdateTime);
         List<ScheduleDto> list = scheduleService.list(lambdaQueryWrapper).stream().map(item -> {
             ScheduleDto scheduleDto=new ScheduleDto();
             BeanUtils.copyProperties(item,scheduleDto);
