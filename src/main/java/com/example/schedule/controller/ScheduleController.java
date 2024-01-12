@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.schedule.common.R;
 import com.example.schedule.dto.ScheduleDto;
@@ -59,35 +60,45 @@ public class ScheduleController {
         scheduleService.removeById(id);
         return R.success("日程计划删除成功！！！");
     }
+    @GetMapping("/get")
+    public R<ScheduleDto> get(Long id){
+        Schedule schedule = scheduleService.getById(id);
+        ScheduleDto scheduleDto = getScheduleDto(schedule);
+        return R.success(scheduleDto);
+    }
     @GetMapping("/list")
     public R<List<ScheduleDto>> list(Long userId ,int status){
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper =new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Schedule::getUserId,userId);
+        //-1 指全部
         if(status!=-1) {
+            if(status!=0){
+                lambdaQueryWrapper.eq(Schedule::getOpenRemind, 1);
+            }
             lambdaQueryWrapper.eq(Schedule::getStatus, status);
-            lambdaQueryWrapper.eq(Schedule::getOpenRemind, 1);
         }
         lambdaQueryWrapper.orderByDesc(Schedule::getUpdateTime);
-        List<ScheduleDto> list = scheduleService.list(lambdaQueryWrapper).stream().map(item -> {
-            ScheduleDto scheduleDto=new ScheduleDto();
-            BeanUtils.copyProperties(item,scheduleDto);
-            User user = userService.getById(item.getUserId());
-            ScheduleType scheduleType =scheduleTypeService.getById(item.getTypeId());
-            if (user != null) {
-                scheduleDto.setNickName(user.getNickName());
-                scheduleDto.setAvatarUrl(user.getAvatarUrl());
-                log.info("333:{}", scheduleDto.getScheduleArrange());
-                scheduleDto.setCategoryName(scheduleType.getTypeName());
-//                普通方式
-                if (scheduleDto.getScheduleArrange() != null) {
-                    //fastJson
-                    List<ScheduleArrange> arrayList = JSON.parseObject(scheduleDto.getScheduleArrange(), new TypeReference<List<ScheduleArrange>>() {});
-                    scheduleDto.setScheduleArrangeList(arrayList);
-                }
-            }
-            return scheduleDto;
-        }).collect(Collectors.toList());
+        List<ScheduleDto> list = scheduleService.list(lambdaQueryWrapper).stream().map(this::getScheduleDto).collect(Collectors.toList());
         return R.success(list);
+    }
+    private ScheduleDto getScheduleDto(Schedule item){
+        ScheduleDto scheduleDto=new ScheduleDto();
+        BeanUtils.copyProperties(item,scheduleDto);
+        User user = userService.getById(item.getUserId());
+        ScheduleType scheduleType =scheduleTypeService.getById(item.getTypeId());
+        if (user != null) {
+            scheduleDto.setNickName(user.getNickName());
+            scheduleDto.setAvatarUrl(user.getAvatarUrl());
+            log.info("333:{}", scheduleDto.getScheduleArrange());
+            scheduleDto.setCategoryName(scheduleType.getTypeName());
+        }
+        // 普通方式
+        if (scheduleDto.getScheduleArrange() != null) {
+            //fastJson
+            List<ScheduleArrange> arrayList = JSON.parseObject(scheduleDto.getScheduleArrange(), new TypeReference<List<ScheduleArrange>>() {});
+            scheduleDto.setScheduleArrangeList(arrayList);
+        }
+        return scheduleDto;
     }
     @GetMapping("/page")
     public R<Page<ScheduleDto>> queryCategory(int page, int pageSize, String keywords, Long typeId, Integer sortId){
