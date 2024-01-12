@@ -29,13 +29,13 @@ public class ScheduleCollect implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Integer id;
+    private Long id;
 
     @TableField("schedule_id")
-    private Integer scheduleId;
+    private Long scheduleId;
 
     @TableField("user_id")
-    private Integer userId;
+    private Long userId;
 
     @TableField("collect_status")
     private Integer collectStatus;

@@ -9,10 +9,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.schedule.common.R;
 import com.example.schedule.dto.ScheduleDto;
-import com.example.schedule.entity.Schedule;
-import com.example.schedule.entity.ScheduleArrange;
-import com.example.schedule.entity.ScheduleType;
-import com.example.schedule.entity.User;
+import com.example.schedule.entity.*;
+import com.example.schedule.service.ScheduleCollectService;
 import com.example.schedule.service.ScheduleService;
 import com.example.schedule.service.ScheduleTypeService;
 import com.example.schedule.service.UserService;
@@ -47,7 +45,8 @@ public class ScheduleController {
     private ScheduleService  scheduleService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private ScheduleCollectService scheduleCollectService;
     @Autowired
     private ScheduleTypeService scheduleTypeService;
     @PostMapping("/add")
@@ -86,6 +85,15 @@ public class ScheduleController {
         BeanUtils.copyProperties(item,scheduleDto);
         User user = userService.getById(item.getUserId());
         ScheduleType scheduleType =scheduleTypeService.getById(item.getTypeId());
+        LambdaQueryWrapper<ScheduleCollect> lambdaQueryWrapper = Wrappers.lambdaQuery();
+        lambdaQueryWrapper.eq(ScheduleCollect::getCollectStatus,1);
+        lambdaQueryWrapper.eq(ScheduleCollect::getScheduleId,item.getScheduleId());
+        int total = scheduleCollectService.count(lambdaQueryWrapper);
+
+        LambdaQueryWrapper<ScheduleCollect> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(ScheduleCollect::getUserId,item.getUserId());
+        queryWrapper.eq(ScheduleCollect::getScheduleId,item.getScheduleId());
+        ScheduleCollect scheduleCollect = scheduleCollectService.getOne(queryWrapper);
         if (user != null) {
             scheduleDto.setNickName(user.getNickName());
             scheduleDto.setAvatarUrl(user.getAvatarUrl());
@@ -98,6 +106,10 @@ public class ScheduleController {
             List<ScheduleArrange> arrayList = JSON.parseObject(scheduleDto.getScheduleArrange(), new TypeReference<List<ScheduleArrange>>() {});
             scheduleDto.setScheduleArrangeList(arrayList);
         }
+        if(scheduleCollect!=null){
+            scheduleDto.setCollectStatus(scheduleCollect.getCollectStatus());
+        }
+        scheduleDto.setCollectTotal(total);
         return scheduleDto;
     }
     @GetMapping("/page")
@@ -110,7 +122,7 @@ public class ScheduleController {
         if(sortId==0) {
             lambdaQueryWrapper.orderByDesc(Schedule::getUpdateTime);
         }else if(sortId==1){
-            lambdaQueryWrapper.orderByDesc(Schedule::getViewCount);
+//            lambdaQueryWrapper.orderByDesc(Schedule::getViewCount);
         }else{
             lambdaQueryWrapper.orderByDesc(Schedule::getStartDate);
         }
@@ -122,26 +134,7 @@ public class ScheduleController {
         //对象拷贝
         BeanUtils.copyProperties(pageInfo,scheduleDtoPage,"records");
 
-        List<ScheduleDto> list = pageInfo.getRecords().stream().map(item -> {
-            //根据id查询分类对象
-            ScheduleDto scheduleDto = new ScheduleDto();
-            BeanUtils.copyProperties(item, scheduleDto);
-            User user = userService.getById(item.getUserId());
-            ScheduleType scheduleType =scheduleTypeService.getById(item.getTypeId());
-            if (user != null) {
-                scheduleDto.setNickName(user.getNickName());
-                scheduleDto.setAvatarUrl(user.getAvatarUrl());
-                log.info("333:{}", scheduleDto.getScheduleArrange());
-                scheduleDto.setCategoryName(scheduleType.getTypeName());
-//                普通方式
-                if (scheduleDto.getScheduleArrange() != null) {
-                    //fastJson
-                    List<ScheduleArrange> arrayList = JSON.parseObject(scheduleDto.getScheduleArrange(), new TypeReference<List<ScheduleArrange>>() {});
-                    scheduleDto.setScheduleArrangeList(arrayList);
-                }
-            }
-            return scheduleDto;
-        }).collect(Collectors.toList());
+        List<ScheduleDto> list = pageInfo.getRecords().stream().map(this::getScheduleDto).collect(Collectors.toList());
         scheduleDtoPage.setRecords(list);
 
         return R.success(scheduleDtoPage);

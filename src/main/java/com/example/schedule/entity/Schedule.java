@@ -65,8 +65,8 @@ public class Schedule implements Serializable {
     @TableField("photos")
     private String photos;
 
-    @TableField("view_count")
-    private Integer viewCount;
+//    @TableField("collect_count")
+//    private Integer collectCount;
 
     @TableField("remind_time")
     private LocalDateTime remindTime;

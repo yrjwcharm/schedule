@@ -11,5 +11,7 @@ public class ScheduleDto extends Schedule {
     private String avatarUrl;
     private String nickName;
     private String categoryName;
+    private int  collectTotal;
+    private int  collectStatus;
     private List<ScheduleArrange> scheduleArrangeList;
 }
