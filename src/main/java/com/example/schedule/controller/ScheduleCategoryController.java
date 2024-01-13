@@ -1,9 +1,8 @@
 package com.example.schedule.controller;
 
 import com.example.schedule.common.R;
-import com.example.schedule.entity.Schedule;
-import com.example.schedule.entity.ScheduleType;
-import com.example.schedule.service.ScheduleTypeService;
+import com.example.schedule.entity.ScheduleCategory;
+import com.example.schedule.service.ScheduleCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,16 +16,15 @@ import java.util.List;
  * </p>
  *
  * @author yanruifeng
- * @since 2024-01-06
+ * @since 2024-01-14
  */
 @RestController
-@RequestMapping("/scheduleType")
-public class ScheduleTypeController {
+@RequestMapping("/scheduleCategory")
+public class ScheduleCategoryController {
     @Autowired
-    private ScheduleTypeService scheduleTypeService;
+    private ScheduleCategoryService scheduleCategoryService;
     @GetMapping("/list")
-    public R<List<ScheduleType>> list(){
-        List<ScheduleType> list = scheduleTypeService.list();
-        return R.success(list);
+    public R<List<ScheduleCategory>> list(){
+        return R.success(scheduleCategoryService.list());
     }
 }

@@ -1,6 +1,6 @@
 package com.example.schedule.service;
 
-import com.example.schedule.entity.ScheduleType;
+import com.example.schedule.entity.ScheduleCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author yanruifeng
- * @since 2024-01-06
+ * @since 2024-01-14
  */
-public interface ScheduleTypeService extends IService<ScheduleType> {
+public interface ScheduleCategoryService extends IService<ScheduleCategory> {
 
 }

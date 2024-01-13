@@ -49,8 +49,8 @@ public class Schedule implements Serializable {
     @TableField("user_id")
     private Long userId;
 
-    @TableField("type_id")
-    private Long typeId;
+    @TableField("category_id")
+    private Long categoryId;
 
     @TableField("open_remind")
     private Integer openRemind;
@@ -65,8 +65,8 @@ public class Schedule implements Serializable {
     @TableField("photos")
     private String photos;
 
-//    @TableField("collect_count")
-//    private Integer collectCount;
+    @TableField("collect_count")
+    private Integer collectCount;
 
     @TableField("remind_time")
     private LocalDateTime remindTime;

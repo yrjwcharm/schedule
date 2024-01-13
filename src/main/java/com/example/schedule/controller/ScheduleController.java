@@ -1,8 +1,6 @@
 package com.example.schedule.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -10,24 +8,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.schedule.common.R;
 import com.example.schedule.dto.ScheduleDto;
 import com.example.schedule.entity.*;
+import com.example.schedule.service.ScheduleCategoryService;
 import com.example.schedule.service.ScheduleCollectService;
 import com.example.schedule.service.ScheduleService;
-import com.example.schedule.service.ScheduleTypeService;
 import com.example.schedule.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-//import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * <p>
@@ -48,9 +40,14 @@ public class ScheduleController {
     @Autowired
     private ScheduleCollectService scheduleCollectService;
     @Autowired
-    private ScheduleTypeService scheduleTypeService;
+    private ScheduleCategoryService scheduleCategoryService;
     @PostMapping("/add")
     public R<String> add(@RequestBody  Schedule schedule){
+        LambdaQueryWrapper<ScheduleCollect> lambdaQueryWrapper = Wrappers.lambdaQuery();
+        lambdaQueryWrapper.eq(ScheduleCollect::getCollectStatus,1);
+        lambdaQueryWrapper.eq(ScheduleCollect::getScheduleId,schedule.getScheduleId());
+        int total = scheduleCollectService.count(lambdaQueryWrapper);
+        schedule.setCollectCount(total);
         scheduleService.save(schedule);
         return R.success("日程创建成功！！！");
     }
@@ -84,12 +81,7 @@ public class ScheduleController {
         ScheduleDto scheduleDto=new ScheduleDto();
         BeanUtils.copyProperties(item,scheduleDto);
         User user = userService.getById(item.getUserId());
-        ScheduleType scheduleType =scheduleTypeService.getById(item.getTypeId());
-        LambdaQueryWrapper<ScheduleCollect> lambdaQueryWrapper = Wrappers.lambdaQuery();
-        lambdaQueryWrapper.eq(ScheduleCollect::getCollectStatus,1);
-        lambdaQueryWrapper.eq(ScheduleCollect::getScheduleId,item.getScheduleId());
-        int total = scheduleCollectService.count(lambdaQueryWrapper);
-
+        ScheduleCategory scheduleCategory =scheduleCategoryService.getById(item.getCategoryId());
         LambdaQueryWrapper<ScheduleCollect> queryWrapper = Wrappers.lambdaQuery();
         queryWrapper.eq(ScheduleCollect::getUserId,item.getUserId());
         queryWrapper.eq(ScheduleCollect::getScheduleId,item.getScheduleId());
@@ -98,7 +90,7 @@ public class ScheduleController {
             scheduleDto.setNickName(user.getNickName());
             scheduleDto.setAvatarUrl(user.getAvatarUrl());
             log.info("333:{}", scheduleDto.getScheduleArrange());
-            scheduleDto.setCategoryName(scheduleType.getTypeName());
+            scheduleDto.setCategoryName(scheduleCategory.getCategoryName());
         }
         // 普通方式
         if (scheduleDto.getScheduleArrange() != null) {
@@ -108,27 +100,26 @@ public class ScheduleController {
         }
         if(scheduleCollect!=null){
             scheduleDto.setCollectStatus(scheduleCollect.getCollectStatus());
+        }else{
+            scheduleDto.setCollectStatus(0);
         }
-        scheduleDto.setCollectTotal(total);
         return scheduleDto;
     }
     @GetMapping("/page")
-    public R<Page<ScheduleDto>> queryCategory(int page, int pageSize, String keywords, Long typeId, Integer sortId){
+    public R<Page<ScheduleDto>> queryCategory(int page, int pageSize, String keywords, Long categoryId, Integer sortId){
         //构造分页构造器
-        Page<Schedule> pageInfo =new Page<Schedule>(page,pageSize);
+        Page<Schedule> pageInfo =new Page<>(page,pageSize);
         Page<ScheduleDto> scheduleDtoPage = new Page<>();
 
         LambdaQueryWrapper<Schedule> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         if(sortId==0) {
-            lambdaQueryWrapper.orderByDesc(Schedule::getUpdateTime);
+            lambdaQueryWrapper.orderByDesc(Schedule::getCreateTime);
         }else if(sortId==1){
-//            lambdaQueryWrapper.orderByDesc(Schedule::getViewCount);
-        }else{
-            lambdaQueryWrapper.orderByDesc(Schedule::getStartDate);
+            lambdaQueryWrapper.orderByDesc(Schedule::getCollectCount);
         }
         //添加条件根据name 进行like模糊查询
         lambdaQueryWrapper.like(StringUtils.isNotEmpty(keywords),Schedule::getScheduleName,keywords);
-        lambdaQueryWrapper.eq(typeId!=0, Schedule::getTypeId,typeId);
+        lambdaQueryWrapper.eq(categoryId!=0, Schedule::getCategoryId,categoryId);
         scheduleService.page(pageInfo,lambdaQueryWrapper);
 
         //对象拷贝

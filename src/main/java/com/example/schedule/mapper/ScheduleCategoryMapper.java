@@ -1,6 +1,6 @@
 package com.example.schedule.mapper;
 
-import com.example.schedule.entity.ScheduleType;
+import com.example.schedule.entity.ScheduleCategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,9 +10,9 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author yanruifeng
- * @since 2024-01-06
+ * @since 2024-01-14
  */
 @Mapper
-public interface ScheduleTypeMapper extends BaseMapper<ScheduleType> {
+public interface ScheduleCategoryMapper extends BaseMapper<ScheduleCategory> {
 
 }
