@@ -54,6 +54,9 @@ public class ScheduleController {
     @DeleteMapping("/{id}")
     public R<String> delete (@PathVariable Long id){
         scheduleService.removeById(id);
+        LambdaQueryWrapper<ScheduleCollect> lambdaQueryWrapper =Wrappers.lambdaQuery();
+        lambdaQueryWrapper.eq(ScheduleCollect::getScheduleId,id);
+        scheduleCollectService.remove(lambdaQueryWrapper);
         return R.success("日程计划删除成功！！！");
     }
     @GetMapping("/get")

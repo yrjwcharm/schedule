@@ -31,7 +31,8 @@ reggie:
 
 zodiac:
   key: 523bfe2b0d574e03e7698bd43aaa6dce
-
+constellation:
+  key: ce4c8f8aae082acdabfbf733b55bfae6
 weixin:
   jscode2sessionUrl: https://api.weixin.qq.com/sns/jscode2session
   appid: wxae2ca77ab20990ea  #修改自己的微信小程序 appId
