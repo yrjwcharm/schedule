@@ -50,7 +50,7 @@ public class ScheduleCollectController {
 
     @Transactional
     @PostMapping("/collect")
-    public R<Schedule> collectSchedule(@RequestBody ScheduleCollect scheduleCollect) {
+    public R<String> collectSchedule(@RequestBody ScheduleCollect scheduleCollect) {
         // 构建查询条件，查找用户是否已收藏该日程
         LambdaQueryWrapper<ScheduleCollect> queryWrapper = Wrappers.lambdaQuery();
         queryWrapper.eq(ScheduleCollect::getScheduleId, scheduleCollect.getScheduleId());
