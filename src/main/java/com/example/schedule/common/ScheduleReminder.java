@@ -11,6 +11,7 @@ import com.example.schedule.service.UserService;
 import com.example.schedule.utils.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,25 +41,24 @@ public class ScheduleReminder {
         List<Schedule> scheduleList = scheduleService.list(lambdaQueryWrapper);
         // 遍历需要提醒的日程
         for (Schedule schedule : scheduleList) {
-            if(schedule.getRemindTime()!=null) {
-                if (LocalDateTime.now().compareTo(schedule.getRemindTime()) >= 0) {
-                    Long userId = schedule.getUserId();
-                    User user = userService.getById(userId);
-                    try {
-                        String s = sendMsg(user, schedule);
-                        JSONObject jsonObject = JSON.parseObject(s);
-                        if (jsonObject.getInteger("errcode") == 0) {
-                            schedule.setStatus(2);
-                            scheduleService.updateById(schedule);
-                            break;
-                        }
-                        // 处理发送结果，记录日志或处理失败情况
-                        // ...
-                    } catch (Exception e) {
-                        throw new CustomException(e.getMessage());
-                    }
-                }
+            if (schedule.getRemindTime() != null && LocalDateTime.now().compareTo(schedule.getRemindTime()) >= 0) {
+                sendReminder(schedule);
             }
+        }
+    }
+    @Async
+    public void sendReminder(Schedule schedule) {
+        try {
+            User user = userService.getById(schedule.getUserId());
+            String s = sendMsg(user, schedule);
+            JSONObject jsonObject = JSON.parseObject(s);
+            if (jsonObject.getInteger("errcode") == 0) {
+                schedule.setStatus(2);
+                scheduleService.updateById(schedule);
+            }
+        } catch (Exception e) {
+            log.error("发送消息异常", e);
+            // 处理异常逻辑
         }
     }
     @Autowired

@@ -64,7 +64,6 @@ public class HttpClientUtil {
             e.printStackTrace();
         }finally {
             try {
-                response.close();
                 httpClient.close();
             } catch (IOException e) {
                 e.printStackTrace();
