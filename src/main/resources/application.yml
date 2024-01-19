@@ -1,6 +1,12 @@
 server:
   port: 8080
 spring:
+#  task:
+#    scheduling:
+#      pool:
+#        size: 10  这意味着你配置了Spring的任务调度器（TaskScheduler）线程池大小为1。
+#  请注意，这并不直接影响到使用@Async注解的方法的执行方式，
+#  因为@Async方法默认使用的不是任务调度器的线程池，而是异步任务执行器（比如SimpleAsyncTaskExecutor或其他自定义的TaskExecutor）。
   application:
     name: schedule
   datasource:
