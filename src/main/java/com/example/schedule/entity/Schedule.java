@@ -62,6 +62,7 @@ public class Schedule implements Serializable {
     @TableField("schedule_arrange")
     private String scheduleArrange;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @TableField("photos")
     private String photos;
 

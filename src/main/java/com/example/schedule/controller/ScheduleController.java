@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -106,6 +107,11 @@ public class ScheduleController {
             List<ScheduleArrange> arrayList = JSON.parseObject(scheduleDto.getScheduleArrange(), new TypeReference<List<ScheduleArrange>>() {
             });
             scheduleDto.setScheduleArrangeList(arrayList);
+        }
+        if(scheduleDto.getPhotos()!=null){
+            List<Map<String,Object>> photosList = JSON.parseObject(scheduleDto.getPhotos(), new TypeReference<List<Map<String,Object>>>() {
+            });
+            scheduleDto.setPhotosList(photosList);
         }
         if (scheduleCollect != null) {
             scheduleDto.setCollectStatus(scheduleCollect.getCollectStatus());
