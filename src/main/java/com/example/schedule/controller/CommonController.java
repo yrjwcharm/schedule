@@ -3,10 +3,7 @@ package com.example.schedule.controller;
 import com.example.schedule.common.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
@@ -15,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.UUID;
 
 /**
@@ -42,6 +41,35 @@ public class CommonController {
 
         file.transferTo(new File(UPLOAD_DIRECTORY+basePath+newFileName));
         return R.success(filePath);
+    }
+    @DeleteMapping("/deleteFile")
+    public R<String> upload(String imageUrl) {
+        try {
+             URL  url = new URL(imageUrl);
+            String path = url.getPath();
+            // 通常文件名位于路径的最后一部分
+            int lastIndex = path.lastIndexOf('/');
+            if (lastIndex != -1) {
+                String fileName = path.substring(lastIndex + 1);
+                File file = new File(UPLOAD_DIRECTORY +basePath+ fileName);
+                if (file.exists()) {
+                    boolean isDeleted = file.delete();
+                    if (isDeleted) {
+                        return R.success("文件删除成功！");
+                    } else {
+                        return R.error("文件删除失败，请检查权限或文件状态");
+                    }
+                } else {
+                    return R.error("要删除的文件不存在");
+                }
+            } else {
+                return R.error("无法从URL中提取文件名");
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return R.error("url解析失败");
+
+        }
     }
     @GetMapping("/download")
     public void downloadFile(String name, HttpServletResponse response){

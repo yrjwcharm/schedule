@@ -35,6 +35,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         //添加图片资源 解决只有tomcat重启才能访问
         registry.addResourceHandler("/uploads/**").
                 addResourceLocations("file:"+System.getProperty("user.dir")+"/src/main/resources/uploads/");
+        registry.addResourceHandler("/static/**").addResourceLocations("file:"+System.getProperty("user.dir")+"/src/main/resources/static/");
+
         //addResourceLocations("file:d:/MySystem/src/main/resources/static/uploadFile/");
     }
 

@@ -1,61 +1,97 @@
 package com.example.schedule.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.List;
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author yanruifeng
+ * @since 2024-01-22
+ */
+@Getter
+@Setter
+@TableName("zodiac")
+@ApiModel(value = "Zodiac对象", description = "")
+public class Zodiac implements Serializable {
 
-@NoArgsConstructor
-@Data
-public class Zodiac {
+    private static final long serialVersionUID = 1L;
 
-    @JsonProperty("reason")
-    private String reason;
-    @JsonProperty("result")
-    private ResultDTO result;
-    @JsonProperty("error_code")
-    private Integer errorCode;
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    private Long id;
 
-    @NoArgsConstructor
-    @Data
-    public static class ResultDTO {
-        @JsonProperty("name")
-        private String name;
-        @JsonProperty("years")
-        private String years;
-        @JsonProperty("fw")
-        private String fw;
-        @JsonProperty("sc")
-        private String sc;
-        @JsonProperty("sz")
-        private String sz;
-        @JsonProperty("xyh")
-        private String xyh;
-        @JsonProperty("ys")
-        private String ys;
-        @JsonProperty("sy")
-        private String sy;
-        @JsonProperty("aq")
-        private String aq;
-        @JsonProperty("xg")
-        private String xg;
-        @JsonProperty("yd")
-        private String yd;
-        @JsonProperty("qd")
-        private String qd;
-        @JsonProperty("currentAge")
-        private List<CurrentAgeDTO> currentAge;
+    @TableField("name")
+    private String name;
 
-        @NoArgsConstructor
-        @Data
-        public static class CurrentAgeDTO {
-            @JsonProperty("y")
-            private Integer y;
-            @JsonProperty("s")
-            private Integer s;
-            @JsonProperty("x")
-            private Integer x;
-        }
-    }
+    @TableField("icon")
+    private String icon;
+
+    @TableField("birth_range")
+    private String birthRange;
+
+    @TableField("wx")
+    private String wx;
+
+    @TableField("bmf")
+    private String bmf;
+
+    @TableField("jxys")
+    private String jxys;
+
+    @TableField("dxys")
+    private String dxys;
+
+    @TableField("xysz")
+    private String xysz;
+
+    @TableField("dxsz")
+    private String dxsz;
+
+    @TableField("xyh")
+    private String xyh;
+
+    @TableField("jxfw")
+    private String jxfw;
+
+    @TableField("ys")
+    private String ys;
+
+    @TableField("yd")
+    private String yd;
+
+    @TableField("qd")
+    private String qd;
+
+    @TableField("sy")
+    private String sy;
+
+    @TableField("aq")
+    private String aq;
+
+    @TableField("cf")
+    private String cf;
+
+    @TableField("jk")
+    private String jk;
+
+    @TableField("yp")
+    private String yp;
+
+    @TableField("yptz")
+    private String yptz;
+
+    @TableField("yj")
+    private String yj;
+
+    @TableField("yjtz")
+    private String yjtz;
 }

@@ -51,7 +51,7 @@ public class CodeGenerator {
                     consumer.customFile(customFile);
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("schedule_category") // 设置需要生成的表名 可边长参数“user”, “user1”
+                    builder.addInclude("constellation") // 设置需要生成的表名 可边长参数“user”, “user1”
                             .addTablePrefix("tb_", "gms_") // 设置过滤表前缀
                             .serviceBuilder()//service策略配置
                             .formatServiceFileName("%sService")
