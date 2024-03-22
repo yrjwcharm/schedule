@@ -88,7 +88,7 @@ public class ScheduleReminder {
         map.put("time3",date4Map);
         body.put("data",map);
         body.put("miniprogram_state","developer");
-        body.put("page","pages/index/index");
+        body.put("page","pages/scheduledetail/index?scheduleId="+schedule.getScheduleId());
         //发送
         String accessToken= getAccessToken();
         return HttpClientUtil.doPost4Json("https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=" + accessToken, body);

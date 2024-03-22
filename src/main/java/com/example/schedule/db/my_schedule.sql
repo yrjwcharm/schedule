@@ -11,7 +11,7 @@
  Target Server Version : 80035 (8.0.35)
  File Encoding         : 65001
 
- Date: 23/01/2024 17:48:37
+ Date: 26/01/2024 19:32:11
 */
 
 SET NAMES utf8mb4;
@@ -23,28 +23,28 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `constellation`;
 CREATE TABLE `constellation` (
   `id` bigint NOT NULL,
-  `name` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `start_date` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `end_date` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xztd` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sxsx` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zggw` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `yysx` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zdtz` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zgxx` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xyys` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jxsw` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xyhm` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kyjs` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bx` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `yd` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qd` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jbtz` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jttz` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xsfg` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gxmd` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zj` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_date` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `end_date` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xztd` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sxsx` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zggw` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yysx` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zdtz` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zgxx` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xyys` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jxsw` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xyhm` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kyjs` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bx` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yd` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qd` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jbtz` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jttz` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xsfg` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gxmd` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zj` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -181,28 +181,28 @@ COMMIT;
 DROP TABLE IF EXISTS `zodiac`;
 CREATE TABLE `zodiac` (
   `id` bigint NOT NULL,
-  `name` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birth_range` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `wx` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bmf` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jxys` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dxys` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xysz` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dxsz` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xyh` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jxfw` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ys` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `yd` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qd` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sy` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `aq` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cf` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jk` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `yp` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `yptz` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `yj` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `yjtz` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birth_range` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `wx` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bmf` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jxys` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dxys` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xysz` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dxsz` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xyh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jxfw` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ys` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yd` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qd` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sy` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `aq` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cf` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jk` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yp` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yptz` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yj` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yjtz` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -212,16 +212,16 @@ CREATE TABLE `zodiac` (
 BEGIN;
 INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (1, '鼠', NULL, '2032,2020,2008,1996,1984,1972,1960,1948,1936,1924,1912,1900', '子属水', '千手观音菩萨', '蓝、金、绿', '黄、啡色', '2、3', '5、9', '百合花,非洲紫罗兰,铃兰', '东南、东北方', '子年生人，为天贵星，性格非常聪明伶俐，凡事宜有心德，此人志愿颇高，利欲心很强，颇有成就，且有积蓄财富，一生多幸福，不过贵星太多，防欺人太甚，到时则会如命理所说：“四贵克子孙”，多与人和睦，到中年运到来风调雨顺，一切所谋遂意，到老年万事达到成功境界，此时得荣华富贵，若逢破星克命，虽富也不会吉也。\n		', '觉悟高反应快，开朗机智，识时务。\n		', '胆小固执，见利妄行，小气爱挑剔。	\n		', '将星带权，前景乐观。\n		', '消极放纵，桃色新闻多。\n		', '财星高照，财源茂盛。\n		', '小心饮食，关注肝脏健康。\n		', '龙、猴、牛', '大吉，心心相印，富贵幸福，万事易成功，享福终身。其他属相次之。', '马、兔、羊', '不能富家，灾害并至，凶煞重重，甚至骨肉分离，不得安宁。');
 INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (2, '牛', NULL, '2033,2021,2009,1997,1985,1973,1961,1949,1937,1925,1913,1901', '丑属土\n		', '虚空藏菩萨\n		', '蓝、红、紫色\n		', '白色、绿色\n		', '1、9', '3、4', '郁金香、万年青、桃花\n		', '东南方、正南方及正北方\n		', '丑年生人，性诚实，富有忍耐心，对事多固执，乏其交际，女人多信他人甜言以致失败，后悔不入及，应该谨慎之，此人沉默寡言，不被人重用，但内心温和，作事勤勉，活动独立，热心坚实，性向钱财等，早离乡白手成家，少年有福，中年交来多少苦劳与精神的麻烦与苦恼，晚景天禀赐福的荣幸，有婚姻上的麻烦等。\n		', '温厚老实，深思熟虑，有抱负。\n		', '拘谨冷漠，固执己见，不善沟通。\n		', '得心应手，大有可为。', '爱憎分明，风波曲折，中庸平衡。', '运势高涨，偏财小吉。\n		', '健康良好，关注耳鼻喉旧病复发。\n		', '鼠、蛇、鸡\n		', '大吉，天做良缘，家道大着阵，财盛家宁。\n		', '马、狗、羊\n		', '吉凶各有，甘苦共存，无进取心，内心多忧疑苦惨。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (3, '虎', NULL, '2034,2022,2010,\n		\n		1998,\n		\n		1986,\n		\n		1974,\n		\n		1962,\n		\n		1950,\n		\n		1938,\n		\n		1926,\n		\n		1914,\n		\n		1902\n		', '寅属木\n', '虚空藏菩萨\n', '蓝、灰、白、橙\n', '金、银、棕、黑\n', '1、3、4\n', '6、7、8', '富贵菊', '南方、东方及东南方\n', '寅年生人，外见宽容，内心刚强，好勇好誉之性，但为人慈悲心深，有舍己成仁之气慨，好出风头，有侠义之心，往往有不利名声的留在世间，宜要注意，此年生人平常好大不作小，宜要其信，自得受人尊敬，女人者多有智达、贞淑，虎年生人初年运至，中年运浮沉未定，变化多端，中年后暂得良好机会，晚景德高望众者亦有之。\n\n', '越挫越猛，雄心万丈，刚毅顽强。\n\n', '独来独往，极瑞叛逆，专横霸道。\n', '阻碍较多，提防年底低谷。\n', '好事多磨，易劳燕分飞。\n', '开源节流，不作大投资。', '抵抗力较差，小心个人健康。', '马、狗\n', '马、狗大吉, 配属猪的吉凶各半，同心永结，德高望重，家业终成，富贵荣华，子孙昌盛。\n\n', '蛇、猴\n', '夫妻不和，忧愁不断，无成功之望，有破财之兆，空虚寂寞。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (4, '兔', NULL, '2035,2023,2011,\n\n1999,\n\n1987,\n\n1975,\n\n1963,\n\n1951,\n\n1939,\n\n1927,\n\n1915,\n\n1903\n', '卯属木', '文殊菩萨\n\n', '红，粉红、紫，蓝\n', '深啡、深黄、白色\n', '3、4、9\n', '1、7、8\n', '兔子花、玉簪花、网纹草\n', '东、东南及南方\n', '卯年生人，性质温和而事业有妖娇，好静不宜好动，缺乏思虑决断，致使遗失了好机会，但富有背叛心而重友情，常浪费金钱，亦为事业上多情屡次失败，此人色情之念深致误招一生的不幸，宜应谨慎之，兔年生的人敏感，记忆力强，有慈悲心。守秩序，坚实、谦让、沉静孤立、审美福渐渐衰微之兆，所以前运应积俭，以待老年之用。\n\n', '越挫越猛，雄心万丈，刚毅顽强。\n\n', '独来独往，极瑞叛逆，专横霸道。\n', '阻碍较多，提防年底低谷。\n', '好事多磨，易劳燕分飞。\n', '开源节流，不作大投资。\n\n', '抵抗力较差，小心过劳现象。\n', '羊、猪、狗\n', '功业成就，安居乐业，专利兴家。\n', '鼠、龙\n', '家庭难有幸福，逆境之象，事业不成，灾祸之致，历尽痛苦。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (5, '龙', NULL, '2036,2024,2012,\n\n2000,\n\n1988,\n\n1976,\n\n1964,\n\n1952,\n\n1940,\n\n1928,\n\n1916,\n\n1904\n\n', '辰属土\n', '普贤菩萨\n', '金、银、灰白\n', '红、绿、紫、黑\n', '1、6、7\n', '3、8、9\n', '龙吐珠、采雀草\n', '西、西北及北方\n', '辰年生人，其性刚毅活泼之风气，嫌因循傲慢尊大，致与长上之意见不和，善恶断分之癖，故缺圆满交际，且性急乏妨耐与宽大心，作事偏激的反响失败者多。对此欠与矫正修得精术，技艺的意志者，自然得良焉。龙年生人多推论、思索、奋斗、意志强。权威，女子者嫌孤独、自信心强，不容易与他人相处，失去幸福前程，对共同事业难得持久力，少年运为固执、失败，中处恐陷入不正事端惹祸。\n', '心思细密，温柔体贴，心地仁厚。\n', '博爱，缺乏决断力，唯唯是诺。\n', '按部就班，创意多发展少。\n', '脆弱易骗，需带眼识人。\n', '一般，粗心易惹祸。\n', '易有小毛病，注意肠胃保养。\n', '鼠、猴、鸡\n', '大吉，缔结良缘，勤俭发家，日见昌盛，富贵成功，子孙继世。\n', '狗、兔\n', '不能和睦终世，破坏离别，不得心安。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (6, '蛇', NULL, '2037,2025,2013,\n\n2001,\n\n1989,\n\n1977,\n\n1965,\n\n1953,\n\n1941,\n\n1929,\n\n1917,\n\n1905\n', '巳属火\n', '普贤菩萨\n', '红、浅黄、黑\n', '白、金、啡色\n', '2、8、9\n', '1、6、7\n', '兰花、仙人掌\n', '东北、西南及南方\n', '巳年生人，其性稳和才智，好安排进退，甚喜交际。有高尚的品质，受朋友好评，但其内心常有阴毒与忌妒心，致难以保持永久交情，心情易造多疑之虑，而且好色，好与人争论而常失去好机会，对此宜应要慎戒之，蛇年生人带有勇敢、亲切，但女子善好家事，易怒短虑，好饮汤癖。少年运多受风霜之苦，中年运多受女色，晚年运渐渐养得幸福进来。\n\n', '精力充沛，热情慷慨，智慧过人。\n\n', '情绪不稳，傲慢自负，好大喜功。\n\n', '认真负责，运势平稳。\n', '顺畅无阻，提防第三者。\n', '一般，收支欠佳。\n\n', '切勿工作过度，注意饮食。\n', '牛、鸡\n', '大吉祥，此中属相相配为福禄鸳鸯，智勇双全，功业垂成，足立宝地，名利双收，一生幸福。\n', '虎、猪\n', '家境虽无大的困苦和失败，但夫妻离心离德，子息缺少，灾厄百端，晚景不祥。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (7, '马', NULL, '2038,2026,2014,\n\n2002,\n\n1990,\n\n1978,\n\n1966,\n\n1954,\n\n1942,\n\n1930,\n\n1918,\n\n1906\n\n\n', '午属火\n', '大势至菩萨\n', '啡、黄、紫\n', '蓝、白、金\n', '2、6、8\n', '1、6、7\n', '海芋、慈姑花、茉莉\n', '东北、西南及西北方\n', '午年生人，其性好动不好静，多喜出风头，而对社会交际极为巧妙，且多管他人事，备受人敬爱，并有贵人牵引以至成功，此人欲好外观，对内事缺乏观察，又好投机事业，且有怪癖之主张。致所思想及计划之事，难保其机密，此人有伶俐、敏速、为人亲切、好旅行、牺牲、自夸、焦燥、悲观的素质。\n\n', '冷静沈着，灵感丰富，思路敏锐。', '占有欲强，爱慕虚荣，情绪化。\n\n', '运势旺，商机多。\n', '有苦难言，起伏多变。\n', '应酬多，财运旺。', '无大碍，关注情绪和失眠小毛病。\n', '虎、羊、狗\n\n', '大吉，夫妻相敬，紫气东来，福乐安详，家道昌隆。\n\n\n', '鼠、牛\n\n', '中年运气尚可，病弱短寿，难望幸福，重生凶兆，一生辛苦，配偶早丧，子女别离。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (8, '羊', NULL, '2039,2027,2015,\n\n2003\n\n1991\n\n1979\n\n1967\n\n1955\n\n1943\n\n1931\n\n1919\n\n1907\n\n', '未属土\n', '大日如来\n\n', '绿、红、紫\n', '金、啡、黑色\n', '3、4、9\n', '6、7、8\n', '康乃馨、报春花、爱丽斯\n', '东、东南及南方\n', '未年生人，其性温柔，有孝心重礼仪，而对同性之人心甚强，多伶俐，好美观性，常常多舍已成仁，致劳苦困难事常有，此人思虑深沉，又有美术工艺趣味，多热心且向神佛、宗教的信念强，终身喜好居住闲静之处。\n\n', '浪漫热情，爽朗乐天，英雄主义。\n\n', '脾气暴燥，好面子虚荣，半途而废。\n', '克服贪心，必有不俗收效。\n', '顺其自然，不可强求。\n\n', '稳中见旺，可投资生意。\n', '身体颇佳，不可暴饮暴食。\n', '兔、马、猪\n', '大吉，天赐良缘，家道谐和，大业成而有德望。\n\n', '牛、狗\n', '夫妻一生难得幸福，多灾多难，一生劳碌，早失配偶或子孙。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (9, '猴', NULL, '2040,2028,2016,\n\n2004,\n\n1992,\n\n1980,\n\n1968,\n\n1956,\n\n1944,\n\n1932,\n\n1920,\n\n1908\n', '申属金\n', '大日如来\n', '白、金、蓝色\n', '红、黑、灰、深啡色\n', '1、7、8\n', '2、5、9\n', '菊花、葱花\n', '北、西北、及西方\n', '申年生人，其性多活泼、好动，伶俐，多才且灵巧，有竞争而敏捷的手腕，又有侠义的心肠，多为他人的事，放弃自己的事务，平常好说大话，不合自己的意见都即时反对且急癖，又带有虚言，诈伪的行为终为刑罚之苦的人有之，对此缺点矫正方可以成功发达。\n', '考虑周到，人际圆融，温柔大方。\n\n', '犹豫不决，阿谀奉承，听天由命。\n\n', '顺利而成功，防范祸起不测。\n\n', '心想事成，轻松自在。\n\n', '收支平稳，有偏财运。\n', '注意饮食卫生，外游不宜。\n\n', '鼠、龙\n', '功，子孙兴旺。\n', '虎、猪、蛇\n', '灾害多起，晚景尚可，但恐寿不到永，疾病困难。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (10, '鸡', NULL, '2041,2029,2017,\n\n2005,\n\n1993,\n\n1981,\n\n1969,\n\n1957,\n\n1945,\n\n1933,\n\n1921,\n\n1909\n', '酉属金\n', '不动尊菩萨\n', '金、啡、啡黄、黄\n', '绿、红、蓝、灰\n', '5、7、8\n', '1、3、9\n', '剑兰、凤仙花、鸡冠花\n\n', '西、西南、东北方\n', '酉年生人，其性诚实多智慧兼伶俐，能与人交际，望得贵人提拔，抱大志多计谋，终遂捷径光明，且有带快热冷的心理，致自抱自弃的缺点，对自己不利的时多与计较，致见少利而生大财之嫌。忠告：属鸡的人，远方男性女性都容易受异性引诱，恋爱的次数相当多，而且每一次都会付出真情，自尊心高，讨厌依赖别人，个性直率，所以并不是每种类型的人都合适你，因此在选择伴侣时，一定要三思而后行。\n\n', '活泼好动，见机行事，能言善道。\n', '狂妄自大，喜新厌旧，狡滑伪善。\n', '平稳顺利，亲力亲为必有成效。\n', '时好时差，时晴时阴。\n\n', '大幅增加，当心经济来往圈套。\n\n', '放松精神，减轻压力。\n', '牛、龙、蛇\n', '此中属相相配祥开白事，有天赐之福，并有名望，功利荣达，家事亨通。\n\n', '狗\n', '金鸡玉犬难逃避，合婚双份不可迁，多灾多难。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (11, '狗', NULL, '2042,2030,2018,\n\n2006,\n\n1994\n\n1982\n\n1970\n\n1958\n\n1946\n\n1934\n\n1922\n\n1910\n\n', '戌属土\n', '阿弥陀佛\n', '绿、红、紫色\n', '蓝、白、金色\n', '3、4、9\n', '1、6、7\n', '玫瑰花、文心兰、惠兰\n', '东、东南及南方\n', '戌年出生人，其性刚直，重义理与信义励业，此人有胆力、奋斗、活动性、聪明、直感性、机敏、大望、热情、费金钱，有稍暴燥性，女子者，富有引人之魅力，易多变自己必理，嫌虚荣、短气、苦劳性、不坚实、忍耐性，对此矫正自然获得良运遁来。\n\n', '勇敢风趣，机智多谋，热情专注。\n', '刻薄短视，心胸狭窄，傲慢自大。\n', '全力投入必会卓然增色。\n\n', '易有口角，忽略联系和关心。\n', '收入有突破，应把握分寸。\n', '小心交通意外，及水险、火灾。\n', '虎、兔、马\n', '大吉，天做之合，处处成功，福碌永久，家运昌隆。\n', '牛、龙、鸡\n', '灾害垒起，钱财散败，一生艰辛，事与愿违。');
-INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (12, '猪', NULL, '2043,2031,\n2019,\n\n2007,\n\n1995,\n\n1983,\n\n1971,\n\n1959,\n\n1947,\n\n1935,\n\n1923,\n\n1911\n\n\n', '亥属水\n', '阿弥陀佛\n', '黄、灰、啡、金\n', '红、绿、蓝\n', '2、5、8\n', '1、3、9\n', '绣球花、猪笼草、太阳菊\n', '西南、东北方\n', '亥年生人，其性耿直无弯曲，能向直中取，不可曲中求，心如洁白，无雅量，外观稳重，内心刚毅，好财，好批评他人是非，无忍耐性，依靠性强，不善交际。忠告：过地正直，非常讨厌拐弯抹角，所以在社会上容易与别人引起纠纷，也会被大家敬而远之。\n\n', '重情重义，纯朴正直，忠实可靠。\n', '易燥易怒，杞人忧天，倔强逞勇。\n', '力求谨慎和保守，有转运。\n', '镜花水月难以琢磨。\n', '不理想难积累，不可强求。\n', '多些休息及运动，慎防外游意外。\n', '羊、兔、虎\n', '大吉，五事其昌，安富尊荣，子孙健壮，积财多福。\n', '蛇、猴\n', '猪猴不到头，朝朝日日泪交流，不能共长久，终生难于幸福。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (3, '虎', NULL, '2034,2022,2010,1998,1986,1974,1962,1950,1938,1926,	1914,	1902', '寅属木\n', '虚空藏菩萨\n', '蓝、灰、白、橙\n', '金、银、棕、黑\n', '1、3、4\n', '6、7、8', '富贵菊', '南方、东方及东南方\n', '寅年生人，外见宽容，内心刚强，好勇好誉之性，但为人慈悲心深，有舍己成仁之气慨，好出风头，有侠义之心，往往有不利名声的留在世间，宜要注意，此年生人平常好大不作小，宜要其信，自得受人尊敬，女人者多有智达、贞淑，虎年生人初年运至，中年运浮沉未定，变化多端，中年后暂得良好机会，晚景德高望众者亦有之。\n\n', '越挫越猛，雄心万丈，刚毅顽强。\n\n', '独来独往，极瑞叛逆，专横霸道。\n', '阻碍较多，提防年底低谷。\n', '好事多磨，易劳燕分飞。\n', '开源节流，不作大投资。', '抵抗力较差，小心个人健康。', '马、狗\n', '马、狗大吉, 配属猪的吉凶各半，同心永结，德高望重，家业终成，富贵荣华，子孙昌盛。\n\n', '蛇、猴\n', '夫妻不和，忧愁不断，无成功之望，有破财之兆，空虚寂寞。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (4, '兔', NULL, '2035,2023,2011,1999,1987,1975,1963,1951,1939,1927,1915,1903', '卯属木', '文殊菩萨\n\n', '红，粉红、紫，蓝\n', '深啡、深黄、白色\n', '3、4、9\n', '1、7、8\n', '兔子花、玉簪花、网纹草\n', '东、东南及南方\n', '卯年生人，性质温和而事业有妖娇，好静不宜好动，缺乏思虑决断，致使遗失了好机会，但富有背叛心而重友情，常浪费金钱，亦为事业上多情屡次失败，此人色情之念深致误招一生的不幸，宜应谨慎之，兔年生的人敏感，记忆力强，有慈悲心。守秩序，坚实、谦让、沉静孤立、审美福渐渐衰微之兆，所以前运应积俭，以待老年之用。\n\n', '越挫越猛，雄心万丈，刚毅顽强。\n\n', '独来独往，极瑞叛逆，专横霸道。\n', '阻碍较多，提防年底低谷。\n', '好事多磨，易劳燕分飞。\n', '开源节流，不作大投资。\n\n', '抵抗力较差，小心过劳现象。\n', '羊、猪、狗\n', '功业成就，安居乐业，专利兴家。\n', '鼠、龙\n', '家庭难有幸福，逆境之象，事业不成，灾祸之致，历尽痛苦。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (5, '龙', NULL, '2036,2024,2012,2000,1988,1976,1964,1952,1940,1928,1916,1904', '辰属土\n', '普贤菩萨\n', '金、银、灰白\n', '红、绿、紫、黑\n', '1、6、7\n', '3、8、9\n', '龙吐珠、采雀草\n', '西、西北及北方\n', '辰年生人，其性刚毅活泼之风气，嫌因循傲慢尊大，致与长上之意见不和，善恶断分之癖，故缺圆满交际，且性急乏妨耐与宽大心，作事偏激的反响失败者多。对此欠与矫正修得精术，技艺的意志者，自然得良焉。龙年生人多推论、思索、奋斗、意志强。权威，女子者嫌孤独、自信心强，不容易与他人相处，失去幸福前程，对共同事业难得持久力，少年运为固执、失败，中处恐陷入不正事端惹祸。\n', '心思细密，温柔体贴，心地仁厚。\n', '博爱，缺乏决断力，唯唯是诺。\n', '按部就班，创意多发展少。\n', '脆弱易骗，需带眼识人。\n', '一般，粗心易惹祸。\n', '易有小毛病，注意肠胃保养。\n', '鼠、猴、鸡\n', '大吉，缔结良缘，勤俭发家，日见昌盛，富贵成功，子孙继世。\n', '狗、兔\n', '不能和睦终世，破坏离别，不得心安。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (6, '蛇', NULL, '2037,2025,2013,2001,1989,1977,1965,1953,1941,1929,1917,1905', '巳属火\n', '普贤菩萨\n', '红、浅黄、黑\n', '白、金、啡色\n', '2、8、9\n', '1、6、7\n', '兰花、仙人掌\n', '东北、西南及南方\n', '巳年生人，其性稳和才智，好安排进退，甚喜交际。有高尚的品质，受朋友好评，但其内心常有阴毒与忌妒心，致难以保持永久交情，心情易造多疑之虑，而且好色，好与人争论而常失去好机会，对此宜应要慎戒之，蛇年生人带有勇敢、亲切，但女子善好家事，易怒短虑，好饮汤癖。少年运多受风霜之苦，中年运多受女色，晚年运渐渐养得幸福进来。\n\n', '精力充沛，热情慷慨，智慧过人。\n\n', '情绪不稳，傲慢自负，好大喜功。\n\n', '认真负责，运势平稳。\n', '顺畅无阻，提防第三者。\n', '一般，收支欠佳。\n\n', '切勿工作过度，注意饮食。\n', '牛、鸡\n', '大吉祥，此中属相相配为福禄鸳鸯，智勇双全，功业垂成，足立宝地，名利双收，一生幸福。\n', '虎、猪\n', '家境虽无大的困苦和失败，但夫妻离心离德，子息缺少，灾厄百端，晚景不祥。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (7, '马', NULL, '2038,2026,2014,2002,1990,1978,1966,1954,1942,1930,1918,1906', '午属火\n', '大势至菩萨\n', '啡、黄、紫\n', '蓝、白、金\n', '2、6、8\n', '1、6、7\n', '海芋、慈姑花、茉莉\n', '东北、西南及西北方\n', '午年生人，其性好动不好静，多喜出风头，而对社会交际极为巧妙，且多管他人事，备受人敬爱，并有贵人牵引以至成功，此人欲好外观，对内事缺乏观察，又好投机事业，且有怪癖之主张。致所思想及计划之事，难保其机密，此人有伶俐、敏速、为人亲切、好旅行、牺牲、自夸、焦燥、悲观的素质。\n\n', '冷静沈着，灵感丰富，思路敏锐。', '占有欲强，爱慕虚荣，情绪化。\n\n', '运势旺，商机多。\n', '有苦难言，起伏多变。\n', '应酬多，财运旺。', '无大碍，关注情绪和失眠小毛病。\n', '虎、羊、狗\n\n', '大吉，夫妻相敬，紫气东来，福乐安详，家道昌隆。\n\n\n', '鼠、牛\n\n', '中年运气尚可，病弱短寿，难望幸福，重生凶兆，一生辛苦，配偶早丧，子女别离。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (8, '羊', NULL, '2039,2027,2015,2003,1991,1979,1967,1955,1943,1931,1919,1907', '未属土\n', '大日如来\n\n', '绿、红、紫\n', '金、啡、黑色\n', '3、4、9\n', '6、7、8\n', '康乃馨、报春花、爱丽斯\n', '东、东南及南方\n', '未年生人，其性温柔，有孝心重礼仪，而对同性之人心甚强，多伶俐，好美观性，常常多舍已成仁，致劳苦困难事常有，此人思虑深沉，又有美术工艺趣味，多热心且向神佛、宗教的信念强，终身喜好居住闲静之处。\n\n', '浪漫热情，爽朗乐天，英雄主义。\n\n', '脾气暴燥，好面子虚荣，半途而废。\n', '克服贪心，必有不俗收效。\n', '顺其自然，不可强求。\n\n', '稳中见旺，可投资生意。\n', '身体颇佳，不可暴饮暴食。\n', '兔、马、猪\n', '大吉，天赐良缘，家道谐和，大业成而有德望。\n\n', '牛、狗\n', '夫妻一生难得幸福，多灾多难，一生劳碌，早失配偶或子孙。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (9, '猴', NULL, '2040,2028,2016,2004,1992,1980,1968,1956,1944,1932,1920,1908', '申属金\n', '大日如来\n', '白、金、蓝色\n', '红、黑、灰、深啡色\n', '1、7、8\n', '2、5、9\n', '菊花、葱花\n', '北、西北、及西方\n', '申年生人，其性多活泼、好动，伶俐，多才且灵巧，有竞争而敏捷的手腕，又有侠义的心肠，多为他人的事，放弃自己的事务，平常好说大话，不合自己的意见都即时反对且急癖，又带有虚言，诈伪的行为终为刑罚之苦的人有之，对此缺点矫正方可以成功发达。\n', '考虑周到，人际圆融，温柔大方。\n\n', '犹豫不决，阿谀奉承，听天由命。\n\n', '顺利而成功，防范祸起不测。\n\n', '心想事成，轻松自在。\n\n', '收支平稳，有偏财运。\n', '注意饮食卫生，外游不宜。\n\n', '鼠、龙\n', '功，子孙兴旺。\n', '虎、猪、蛇\n', '灾害多起，晚景尚可，但恐寿不到永，疾病困难。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (10, '鸡', NULL, '2041,2029,2017,2005,1993,1981,1969,1957,1945,1933,1921,1909', '酉属金\n', '不动尊菩萨\n', '金、啡、啡黄、黄\n', '绿、红、蓝、灰\n', '5、7、8\n', '1、3、9\n', '剑兰、凤仙花、鸡冠花\n\n', '西、西南、东北方\n', '酉年生人，其性诚实多智慧兼伶俐，能与人交际，望得贵人提拔，抱大志多计谋，终遂捷径光明，且有带快热冷的心理，致自抱自弃的缺点，对自己不利的时多与计较，致见少利而生大财之嫌。忠告：属鸡的人，远方男性女性都容易受异性引诱，恋爱的次数相当多，而且每一次都会付出真情，自尊心高，讨厌依赖别人，个性直率，所以并不是每种类型的人都合适你，因此在选择伴侣时，一定要三思而后行。\n\n', '活泼好动，见机行事，能言善道。\n', '狂妄自大，喜新厌旧，狡滑伪善。\n', '平稳顺利，亲力亲为必有成效。\n', '时好时差，时晴时阴。\n\n', '大幅增加，当心经济来往圈套。\n\n', '放松精神，减轻压力。\n', '牛、龙、蛇\n', '此中属相相配祥开白事，有天赐之福，并有名望，功利荣达，家事亨通。\n\n', '狗\n', '金鸡玉犬难逃避，合婚双份不可迁，多灾多难。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (11, '狗', NULL, '2042,2030,2018,2006,1994,1982,1970,1958,1946,1934,1922,1910', '戌属土', '阿弥陀佛\n', '绿、红、紫色\n', '蓝、白、金色\n', '3、4、9\n', '1、6、7\n', '玫瑰花、文心兰、惠兰\n', '东、东南及南方\n', '戌年出生人，其性刚直，重义理与信义励业，此人有胆力、奋斗、活动性、聪明、直感性、机敏、大望、热情、费金钱，有稍暴燥性，女子者，富有引人之魅力，易多变自己必理，嫌虚荣、短气、苦劳性、不坚实、忍耐性，对此矫正自然获得良运遁来。\n\n', '勇敢风趣，机智多谋，热情专注。\n', '刻薄短视，心胸狭窄，傲慢自大。\n', '全力投入必会卓然增色。\n\n', '易有口角，忽略联系和关心。\n', '收入有突破，应把握分寸。\n', '小心交通意外，及水险、火灾。\n', '虎、兔、马\n', '大吉，天做之合，处处成功，福碌永久，家运昌隆。\n', '牛、龙、鸡\n', '灾害垒起，钱财散败，一生艰辛，事与愿违。');
+INSERT INTO `zodiac` (`id`, `name`, `icon`, `birth_range`, `wx`, `bmf`, `jxys`, `dxys`, `xysz`, `dxsz`, `xyh`, `jxfw`, `ys`, `yd`, `qd`, `sy`, `aq`, `cf`, `jk`, `yp`, `yptz`, `yj`, `yjtz`) VALUES (12, '猪', NULL, '2043,2031,2019,2007,1995,1983,1971,1959,1947,1935,1923,1911', '亥属水', '阿弥陀佛\n', '黄、灰、啡、金\n', '红、绿、蓝\n', '2、5、8\n', '1、3、9\n', '绣球花、猪笼草、太阳菊\n', '西南、东北方\n', '亥年生人，其性耿直无弯曲，能向直中取，不可曲中求，心如洁白，无雅量，外观稳重，内心刚毅，好财，好批评他人是非，无忍耐性，依靠性强，不善交际。忠告：过地正直，非常讨厌拐弯抹角，所以在社会上容易与别人引起纠纷，也会被大家敬而远之。\n\n', '重情重义，纯朴正直，忠实可靠。\n', '易燥易怒，杞人忧天，倔强逞勇。\n', '力求谨慎和保守，有转运。\n', '镜花水月难以琢磨。\n', '不理想难积累，不可强求。\n', '多些休息及运动，慎防外游意外。\n', '羊、兔、虎\n', '大吉，五事其昌，安富尊荣，子孙健壮，积财多福。\n', '蛇、猴\n', '猪猴不到头，朝朝日日泪交流，不能共长久，终生难于幸福。');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
